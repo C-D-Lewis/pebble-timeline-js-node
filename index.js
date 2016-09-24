@@ -61,7 +61,33 @@ function deleteSharedPin(pin, topics, apiKey, callback) {
   timelineRequest(pin, 'DELETE', topics, apiKey, callback);
 }
 
+/**
+* Set the user's AppGlances with an array of slice objects.
+* @param slices An array of AppGlance slice objects (https://developer.pebble.com/guides/user-interfaces/appglance-rest/#creating-slices)
+* @param userToken The user's timeline token, obtained via PebbleKit JS.
+* @param callback Callback called when the request is resolved.
+*/
+function setAppGlances(slices, userToken, callback) {
+  var url = API_URL_ROOT + 'v1/user/glance/';
+
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function () {
+    Log('response received: ' + this.responseText);
+    callback(this.responseText);
+  };
+  xhr.open('PUT', url);
+
+  // Set headers
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-User-Token', userToken);
+
+  // Send
+  xhr.send(JSON.stringify({ 'slices': slices }));
+  Log('AppGlance request sent.');
+}
+
 /********************************** Exports ***********************************/
 
 module.exports.insertSharedPin = insertSharedPin;
 module.exports.deleteSharedPin = deleteSharedPin;
+module.exports.setAppGlances = setAppGlances;
