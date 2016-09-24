@@ -29,3 +29,9 @@ timelinejs.insertSharedPin(pin, topics, apiKey, function(responseText) {
 });
 
 ```
+
+## TODO
+
+Add methods for wrapping the
+[AppGlance REST API](https://developer.pebble.com/guides/user-interfaces/appglance-rest).
+
