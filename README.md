@@ -7,6 +7,13 @@ Node.js module for pushing shared (topic) pins to app users.
 `npm install --save pebble-timeline-js-node`
 
 
+## Methods
+
+`insertSharedPin(pin, topics, apiKey, callback)` - insert a shared pin for the topics in the `topics` array.
+
+`deleteSharedPin(pin, topics, apiKey, callback)` - delete a previously pushed pin.
+
+
 ## Example Usage
 
 ```js
