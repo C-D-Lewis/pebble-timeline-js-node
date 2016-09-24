@@ -34,33 +34,9 @@ function timelineRequest(pin, type, topics, apiKey, callback) {
     xhr.setRequestHeader('X-API-Key', '' + apiKey);
   }
 
-  // Get token
-  Pebble.getTimelineToken(function(token) {
-    // Add headers
-    xhr.setRequestHeader('X-User-Token', '' + token);
-
-    // Send
-    xhr.send(JSON.stringify(pin));
-    Log('request sent.');
-  }, function() { Log('error getting timeline token'); });
-}
-
-/**
- * Insert a pin into the timeline for this user.
- * @param pin The JSON pin to insert.
- * @param callback The callback to receive the responseText after the request has completed.
- */
-function insertUserPin(pin, callback) {
-  timelineRequest(pin, 'PUT', null, null, callback);
-}
-
-/**
- * Delete a pin from the timeline for this user.
- * @param pin The JSON pin to delete.
- * @param callback The callback to receive the responseText after the request has completed.
- */
-function deleteUserPin(pin, callback) {
-  timelineRequest(pin, 'DELETE', null, null, callback);
+  // Send
+  xhr.send(JSON.stringify(pin));
+  Log('request sent.');
 }
 
 /**
@@ -87,7 +63,5 @@ function deleteSharedPin(pin, topics, apiKey, callback) {
 
 /********************************** Exports ***********************************/
 
-module.exports.insertUserPin = insertUserPin;
 module.exports.insertSharedPin = insertSharedPin;
-module.exports.deleteUserPin = deleteUserPin;
 module.exports.deleteSharedPin = deleteSharedPin;
