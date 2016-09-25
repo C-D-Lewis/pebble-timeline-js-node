@@ -13,7 +13,13 @@ Node.js module for pushing shared (topic) pins to app users.
 
 `deleteSharedPin(pin, topics, apiKey, callback)` - delete a previously pushed pin.
 
+`insertUserPin(pin, userToken, callback)` - insert a timeline pin for the user running the app.
+
+`deleteUserPin(pin, userToken, callback)` - delete a pin previously pushed. The `id` must match.
+
 `setAppGlances(slices, userToken, callback)` - set the current collection of AppGlance slice objects. Requires the user's timeline token, obtained using PebbleKit JS.
+
+> `userToken` must be received from each client app that connects to this server. The developer is responsible for handling this.
 
 
 ## Example Usage
@@ -56,10 +62,3 @@ timelinejs.setAppGlances(slices, userToken, function(responseText) {
   console.log('AppGlance result: ' + responseText);
 });
 ```
-
-
-## TODO
-
-Add methods for wrapping the
-[AppGlance REST API](https://developer.pebble.com/guides/user-interfaces/appglance-rest).
-
